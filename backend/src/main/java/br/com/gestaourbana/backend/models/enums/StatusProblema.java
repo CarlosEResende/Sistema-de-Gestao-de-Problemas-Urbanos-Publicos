@@ -1,4 +1,4 @@
-package br.com.gestaourbana.backend.models.enums.problema;
+package br.com.gestaourbana.backend.models.enums;
 
 
 public enum StatusProblema {

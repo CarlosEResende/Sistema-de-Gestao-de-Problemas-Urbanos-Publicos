@@ -2,28 +2,23 @@ package br.com.gestaourbana.backend.models;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import br.com.gestaourbana.backend.models.enums.TipoUsuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = Usuario.TABLE_NAME)
-public class Usuario {
+@Table(name = Cidadao.TABLE_NAME)
+public class Cidadao {
 
-    public static final String TABLE_NAME = "usuario";
+    public static final String TABLE_NAME = "cidadao";
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -53,13 +48,9 @@ public class Usuario {
     @Column(nullable = false, length = 200)
     private String endereco;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    @NotNull(message = "Tipo de usuário é obrigatório")
-    private TipoUsuario tipo;
-
-    @Transient
-    private String codigoAgente;
+    @NotBlank(message = "CEP é obrigatório")
+    @Column(nullable = false, length = 10)
+    private String cep;
 
     @Column(name = "data_cadastro", updatable = false)
     private LocalDateTime dataCadastro;
