@@ -35,7 +35,7 @@ O Sistema de Gestão de Problemas Urbanos é uma plataforma desenhada para facil
     *   Adicionar comentários sobre as ações tomadas.
     *   Anexar mídias comprovando a solução.
 
-## Fluxo Básico de um Problema (Simulado)
+## Fluxo Básico de um Problema 
 
 1.  **Registro:** Cidadão registra um novo problema. Status inicial: "Registrado".
 2.  **Triagem e Avaliação:** Agente Público visualiza o problema. Pode mudar o status (ex: "Em Análise") para dar continuidade no processo.
