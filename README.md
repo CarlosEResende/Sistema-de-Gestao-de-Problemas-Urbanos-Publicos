@@ -35,23 +35,6 @@ O Sistema de Gestão de Problemas Urbanos é uma plataforma desenhada para facil
     *   Adicionar comentários sobre as ações tomadas.
     *   Anexar mídias comprovando a solução.
 
-### Modelo de Dados e Relacionamentos
-## O sistema possui as seguintes entidades principais e seus relacionamentos:
-   ## Usuário (1) → (N) Problema
-   
-   # Um usuário pode registrar vários problemas
-   # Cada problema pertence a um único usuário
-   
-   ## Problema (1) → (N) Atualização
-   # Um problema pode ter várias atualizações de status
-   # Cada atualização pertence a um único problema
-   ## Problema (1) → (N) Mídia
-   # Um problema pode ter várias mídias associadas (fotos, vídeos)
-   # Cada mídia pertence a um único problema
-   ## Agente Público (1) → (N) Atualização
-   # Um agente pode realizar várias atualizações
-   # Cada atualização é feita por um único agente
-
 ## Fluxo Básico de um Problema 
 
 1.  **Registro:** Cidadão registra um novo problema. Status inicial: "Registrado".
