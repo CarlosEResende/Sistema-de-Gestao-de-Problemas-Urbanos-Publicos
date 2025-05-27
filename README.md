@@ -1,34 +1,45 @@
-# Sistema de Gestão de Problemas Urbanos Públicos
+# Sistema de Gestão de Problemas Urbanos (Frontend Angular)
 
-## Visão Geral
+O Sistema de Gestão de Problemas Urbanos é uma plataforma desenhada para facilitar a comunicação entre cidadãos e a administração pública municipal. Ele permite que os cidadãos reportem problemas urbanos de forma eficiente e acompanhem sua resolução, enquanto oferece aos agentes públicos ferramentas para gerenciar, priorizar e responder a essas demandas de forma transparente.
 
-Este projeto é um **Sistema de Gestão de Problemas Urbanos Públicos**, desenvolvido com o objetivo de facilitar a comunicação entre os cidadãos e o poder público. A plataforma permite que usuários cadastrem problemas urbanos (como buracos, iluminação pública defeituosa, lixo acumulado, entre outros) e acompanhem a situação desses problemas.
+## Atores do Sistema
 
-O sistema é baseado em três entidades principais:
+*   **Cidadão:** Qualquer indivíduo que deseja reportar um problema urbano ou acompanhar o status de problemas existentes.
+*   **Agente Público:** Funcionário da administração municipal responsável por receber, analisar, encaminhar, atualizar o status e registrar a solução dos problemas reportados.
 
-- **Usuário**: Representa os cidadãos que se cadastram para reportar problemas.
-- **Problema**: Representa as ocorrências urbanas registradas pelos usuários.
-- **Relato**: Representa a ação do usuário ao relatar um problema, conectando um usuário a um problema específico.
+## Funcionalidades Principais Implementadas
 
-### Funcionalidades Principais
+### Para Cidadãos:
 
-1. **Cadastro e gerenciamento de usuários**:
-   - **Cadastro de usuários**: Os cidadãos podem criar uma conta no sistema fornecendo informações básicas como nome, email e senha. Este cadastro é necessário para poder reportar problemas.
-   - **Edição de informações**: Os usuários podem atualizar seus dados pessoais, como nome e email, para garantir que suas informações estejam sempre corretas.
-   - **Exclusão de conta**: O sistema permite que os usuários excluam suas contas caso não desejem mais participar, removendo completamente seus dados do sistema.
+*   **Registrar Problema:**
+    *   Descrever o problema.
+    *   Informar a localização (endereço, ponto de referência).
+    *   Anexar mídias
+*   **Visualizar Meus Problemas:**
+    *   Listar todos os problemas registrados pelo cidadão logado.
+    *   Acompanhar o status atual de cada um.
+    *   Visualizar as respostas e evidências fornecidas pelos agentes públicos.
+*   **Atualizar Problema:**
+    *   Modificar informações do problema (descrição, localização, mídias) antes que um agente público inicie o atendimento.
+*   **Deletar/Cancelar Problema:**
+    *   Solicitar o cancelamento de um problema registrado.
 
-2. **Cadastro e gerenciamento de problemas urbanos**:
-   - **Registro de novos problemas**: Os cidadãos podem registrar problemas urbanos como buracos nas ruas, falta de iluminação, lixo acumulado, entre outros. Cada problema registrado deve conter informações detalhadas como título, descrição e status inicial.
-   - **Acompanhamento de problemas**: Após registrar um problema, o cidadão pode acompanhar o andamento da solução do problema. O status do problema pode ser atualizado conforme o progresso das ações para sua resolução.
-   - **Exclusão de problemas**: Caso um problema tenha sido registrado erroneamente ou já tenha sido resolvido de outra forma, o usuário pode solicitar a exclusão do problema.
+### Para Agentes Públicos:
 
-3. **Registro de relatos e associar usuários aos problemas**:
-   - **Relato de problemas por usuários**: Cada usuário pode relatar um problema específico, criando um vínculo entre o usuário e o problema. Isso facilita o acompanhamento da origem da solicitação.
-   - **Gerenciamento de relatos**: O sistema armazena o histórico de relatos de cada usuário, permitindo que o cidadão acompanhe quais problemas ele já reportou e a situação de cada um.
-   - **Visualização de problemas já reportados**: Os usuários podem visualizar os problemas que já foram registrados no sistema, permitindo maior transparência e acompanhamento do andamento das soluções.
+*   **Visualizar Painel de Problemas:**
+    *   Acessar uma lista de todos os problemas reportados.
+    *   Filtrar e ordenar problemas por tipo, data, status, etc.
+*   **Atualizar Status do Problema:**
+    *   Modificar o status do problema ao longo do seu ciclo de vida (ex: "Recebido", "Em Análise", "Resolvido", etc.).
+*   **Registrar Resposta e Solução:**
+    *   Adicionar comentários sobre as ações tomadas.
+    *   Anexar mídias comprovando a solução.
 
-### Objetivo
+## Fluxo Básico de um Problema (Simulado)
 
-O objetivo deste sistema é melhorar a gestão urbana, tornando o processo de reporte de problemas mais ágil e eficiente, além de promover uma maior interação entre os cidadãos e as autoridades locais.
+1.  **Registro:** Cidadão registra um novo problema. Status inicial: "Registrado".
+2.  **Triagem e Avaliação:** Agente Público visualiza o problema. Pode mudar o status (ex: "Em Análise") para dar continuidade no processo.
+3.  **Resolução:**  Agente registra a solução, anexa evidências  e atualiza o status para "Resolvido".
+4.  **Notificação:** O Cidadão é informado (visualizando o status atualizado e as respostas do agente).
+5.  **Cancelamento/Recusa:** Um problema pode ser "Cancelado pelo Cidadão" ou "Recusado" pelo Agente (com justificativa).
 
----
