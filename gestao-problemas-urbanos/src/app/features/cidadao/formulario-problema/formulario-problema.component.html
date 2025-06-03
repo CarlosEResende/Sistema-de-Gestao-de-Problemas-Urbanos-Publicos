@@ -1,0 +1,102 @@
+<div class="form-container">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="form-icon">{{ modoEdicao ? 'edit' : 'add_circle' }}</mat-icon>
+        {{ modoEdicao ? 'Editar Problema' : 'Reportar Novo Problema' }}
+      </mat-card-title>
+      <mat-card-subtitle>Preencha os dados abaixo para {{ modoEdicao ? 'atualizar' : 'registrar' }} o problema urbano</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <form class="problem-form" (ngSubmit)="salvarProblema()">
+        <div *ngIf="mensagemErro" class="error-message">
+          <mat-icon>error</mat-icon>
+          <span>{{ mensagemErro }}</span>
+        </div>
+
+        <div *ngIf="mensagemSucesso" class="success-message">
+          <mat-icon>check_circle</mat-icon>
+          <span>{{ mensagemSucesso }}</span>
+        </div>
+
+        <div class="form-section">
+          <h3 class="section-title">Informações do Problema</h3>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Título</mat-label>
+            <input matInput [(ngModel)]="problema.titulo" name="titulo" required>
+            <mat-icon matSuffix>title</mat-icon>
+            <mat-hint>Descreva brevemente o problema</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo de Problema</mat-label>
+            <mat-select [(ngModel)]="problema.tipoProblema" name="tipoProblema" required>
+              <mat-option *ngFor="let tipo of tiposDeProblema" [value]="tipo.value">
+                {{ tipo.label }}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>category</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Descrição</mat-label>
+            <textarea matInput [(ngModel)]="problema.descricao" name="descricao" rows="4" required></textarea>
+            <mat-icon matSuffix>description</mat-icon>
+            <mat-hint>Descreva o problema com detalhes</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="form-section">
+          <h3 class="section-title">Localização</h3>
+
+          <div class="address-grid">
+            <mat-form-field appearance="outline">
+              <mat-label>Rua</mat-label>
+              <input matInput [(ngModel)]="problema.endereco.rua" name="rua" required>
+              <mat-icon matSuffix>location_on</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Bairro</mat-label>
+              <input matInput [(ngModel)]="problema.endereco.bairro" name="bairro" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Cidade</mat-label>
+              <input matInput [(ngModel)]="problema.endereco.cidade" name="cidade" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Estado</mat-label>
+              <input matInput [(ngModel)]="problema.endereco.estado" name="estado" required maxlength="2">
+              <mat-hint>Sigla (ex: SP)</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>CEP</mat-label>
+              <input matInput [(ngModel)]="problema.endereco.cep" name="cep" required>
+              <mat-icon matSuffix>local_post_office</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button mat-stroked-button type="button" (click)="navegarParaPainel()">
+            <mat-icon>arrow_back</mat-icon>
+            Voltar
+          </button>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="carregando">
+            <mat-icon *ngIf="!carregando">{{ modoEdicao ? 'save' : 'add' }}</mat-icon>
+            <mat-spinner *ngIf="carregando" diameter="20"></mat-spinner>
+            {{ modoEdicao ? 'Salvar Alterações' : 'Registrar Problema' }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

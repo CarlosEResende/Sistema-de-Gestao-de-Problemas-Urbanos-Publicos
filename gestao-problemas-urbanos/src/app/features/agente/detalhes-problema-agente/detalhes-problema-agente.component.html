@@ -1,0 +1,115 @@
+<div class="container-lado-a-lado" *ngIf="!carregando; else loadingTemplate">
+  <div class="page-wrapper" *ngIf="problema; else semProblemaTemplate">
+    <div
+      *ngIf="exibirMensagemSucessoFlag"
+      [class.mensagem]="true"
+      [class.mensagem-sucesso]="true"
+      [class.mensagem-sumindo]="sumindoSucesso"
+    >
+      {{ mensagemSucesso }}
+    </div>
+
+    <div
+      *ngIf="exibirMensagemErroFlag"
+      [class.mensagem]="true"
+      [class.mensagem-erro]="true"
+      [class.mensagem-sumindo]="sumindoErro"
+    >
+      {{ mensagemErro }}
+    </div>
+    <div class="header">
+      <h1>
+        Registro:
+        <small> {{ problema.dataRegistro | date : "dd/MM/yyyy" }}</small>
+      </h1>
+      <span class="status-badge" [attr.data-status]="problema.status">{{
+        problema.status
+      }}</span>
+    </div>
+    <div class="info-section">
+      <strong>Tipo:</strong> {{ problema.tipoProblema }}
+      <p>
+        <strong>Localização:</strong> Bairro{{ problema.endereco.bairro }} na
+        <strong>Rua</strong> {{ problema.endereco.rua }}
+      </p>
+      <strong> Horario:{{ problema.dataRegistro | date : "  HH:mm" }}</strong>
+
+      <br />
+      <h2>Descrição</h2>
+      <p class="descricao">{{ problema.descricao }}</p>
+    </div>
+
+    <div class="atualizacao-section">
+      <h2>Atualizar Status</h2>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Novo Status</mat-label>
+        <mat-select [(value)]="novoStatus" placeholder="Selecione um status">
+          <mat-option
+            *ngFor="let status of listaStatusDisponiveis"
+            [value]="status"
+          >
+            {{ status }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Comentário (opcional)</mat-label>
+        <textarea
+          matInput
+          rows="4"
+          [(ngModel)]="comentarioAgente"
+          placeholder="Digite um comentário explicando a alteração..."
+        ></textarea>
+      </mat-form-field>
+
+      <div class="actions">
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="atualizarStatus()"
+          [disabled]="carregando"
+        >
+          Salvar
+        </button>
+        <button
+          mat-stroked-button
+          color="warn"
+          (click)="voltar()"
+          [disabled]="carregando"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="comentarios-card" *ngIf="problema?.comentarios?.length != 0">
+    <h2>Comentários</h2>
+    <div class="comentarios-container">
+      <div class="comentario-item" *ngFor="let c of problema?.comentarios">
+        <div class="comentario-texto">"{{ c.texto }}"</div>
+        <div class="comentario-meta">
+          — {{ c.nomeUsuario }} em {{ c.dataHora | date : "dd/MM/yyyy HH:mm" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <div
+    style="text-align: center; padding: 50px; font-size: 1.2rem; color: #666"
+  >
+    Carregando detalhes do problema...
+  </div>
+</ng-template>
+
+<ng-template #semProblemaTemplate>
+  <div
+    style="text-align: center; padding: 40px; font-size: 1.1rem; color: #d32f2f"
+  >
+    {{ mensagemErro || "Problema não encontrado." }}
+  </div>
+</ng-template>

@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <span class="navbar-brand">Gestão de Problemas Urbanos</span>
+
+  <span class="spacer"></span>
+
+  <button class="custom-btn cidadao" (click)="loginAsCidadao()"
+    [disabled]="usuarioService.getUsuarioLogado()?.tipo === 'cidadao'">
+    Ver como Cidadão
+  </button>
+
+  <button class="custom-btn agente" (click)="loginAsAgente()"
+    [disabled]="usuarioService.getUsuarioLogado()?.tipo === 'agente'">
+    Ver como Agente
+  </button>
+
+  <button *ngIf="usuarioService.getUsuarioLogado()" class="custom-btn logout"
+    (click)="logout()">
+    Logout
+  </button>
+</mat-toolbar>

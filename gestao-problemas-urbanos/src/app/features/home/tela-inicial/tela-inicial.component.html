@@ -1,0 +1,44 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="logo" style="display: flex; align-items: center; gap: 8px">
+    <img src="icon.png" alt="SGPUP Logo" />
+    <span>SGPUP</span>
+  </div>
+
+  <span class="spacer"></span>
+  <div class="nav-links">
+
+  </div>
+
+  <div class="nav-buttons">
+    <button mat-flat-button class="custom-login" (click)="irParaLogin()">Login</button>
+    <button mat-flat-button class="custom-signup" (click)="irParaRegistro()">Cadastro</button>
+  </div>
+</mat-toolbar>
+
+<main class="hero-section">
+  <div class="hero-text">
+    <h1>
+      Facilitamos a comunicação entre cidadãos e o poder público para
+      transformar desafios urbanos em soluções efetivas.
+    </h1>
+    <p>
+      Registre ocorrências, acompanhe seu andamento e colabore para o
+      desenvolvimento de uma cidade mais organizada e eficiente.
+    </p>
+    <div class="hero-buttons">
+      <button mat-flat-button class="custom-signup" (click)="irParaRegistro()">Realizar Cadastro</button>
+      <button mat-flat-button class="custom-signup" (click)="irParaLogin()">Efetuar Login</button>
+    </div>
+  </div>
+
+  <div class="hero-images">
+    <img
+      class="main-img"
+      src="img1.jpeg"
+      alt="Pessoa fotografando problema urbano"
+    />
+    <img class="img2" src="img2.jpeg" alt="Problema urbano 2" />
+    <img class="img3" src="img3.jpeg" alt="Problema urbano 3" />
+  </div>
+</main>
+

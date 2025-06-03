@@ -1,0 +1,351 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.mat-toolbar {
+  margin-top: 30px;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 14px !important;
+  display: flex;
+  background: white;
+  border: none;
+  background: linear-gradient(135deg, #3f51b5 0%, #2196F3 100%);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+button[mat-raised-button] {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+button[mat-raised-button].mat-accent {
+  background: linear-gradient(135deg, #FF9800 0%, #FF5722 100%);
+  color: white;
+  box-shadow: 0 3px 10px rgba(255, 152, 0, 0.3);
+}
+
+button[mat-raised-button].mat-warn {
+  background: linear-gradient(135deg, #F44336 0%, #E91E63 100%);
+  color: white;
+  box-shadow: 0 3px 10px rgba(244, 67, 54, 0.3);
+}
+
+button[mat-raised-button]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.content-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 20px;
+  gap: 20px;
+  background-color: #ffffff;
+}
+
+.filters-sidebar {
+  width: 320px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-card {
+  height: 540px;
+  border-radius: 14px !important;
+  box-shadow: 0 6px 24px rgba(63, 81, 181, 0.35);
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: none;
+}
+
+.filter-card mat-card-header {
+  background: linear-gradient(135deg, #3f51b5 0%, #2196F3 100%);
+  color: white;
+  border-radius: 14px 14px 0 0 !important;
+  padding: 16px;
+}
+
+.filter-card mat-card-title {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.filter-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgba(63, 81, 181, 0.2);
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #3f51b5;
+}
+
+.problems-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.stats-bar {
+  border-radius: 14px !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  background: white;
+  padding: 16px 24px;
+  border: none;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 10px;
+  min-width: 90px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  border: none;
+}
+
+.stat-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.stat-item:nth-child(1) {
+  background-color: #FFEBEE;
+}
+
+.stat-item:nth-child(2) {
+  background-color: #FFF3E0;
+}
+
+.stat-item:nth-child(3) {
+  background-color: #E8F5E9;
+}
+
+.stat-item:nth-child(4) {
+  background-color: #E3F2FD;
+}
+
+
+.stat-value {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+
+.stat-item.total {
+  background: linear-gradient(135deg, #3f51b5 0%, #2196F3 100%);
+  box-shadow: 0 6px 20px rgba(63, 81, 181, 0.3);
+}
+
+.problems-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 800px;
+  padding-left: 40px;
+  padding-top: 20px;
+}
+
+.problem-card {
+  border-radius: 14px !important;
+  box-shadow: 0 4px 0px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  background: white;
+  border: none;
+  overflow: hidden;
+}
+
+.problem-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+}
+
+.problem-card mat-card-header {
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.problem-card mat-card-title {
+  font-weight: 500;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.problem-card mat-card-subtitle {
+  color: #666;
+}
+
+.status-badge {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.status-aberto {
+  background: linear-gradient(135deg, #FF5252 0%, #F44336 100%);
+  color: white;
+}
+
+.status-badge {
+  background: linear-gradient(135deg, #FF5252 0%, #F44336 100%);
+  color: white;
+}
+
+.status-registrado{
+  background: linear-gradient(135deg, #2196F3 0%, #1565C0 100%);
+  color: white;
+}
+
+.status-em-análise{
+  background: linear-gradient(135deg, #f3bb21 0%, #ebb15a 100%);
+  color: white;
+}
+
+.status-resolvido {
+  background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+  color: white;
+}
+
+.status-em-andamento{
+  background: linear-gradient(135deg, #8edde7 0%, #66a2e8 100%);
+  color: white;
+  animation: pulse-attention 1.5s infinite;
+}
+
+.status-cancelado {
+  background: linear-gradient(135deg, #9E9E9E 0%, #616161 100%);
+}
+
+.loading-container,
+.error-container,
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.error-container {
+  background: #FFEBEE;
+}
+
+
+.no-results {
+  background: #E3F2FD;
+}
+
+.no-results mat-icon {
+  color: #2196F3;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f51b5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #303F9F;
+}
+
+@media (max-width: 992px) {
+  .content-container {
+    flex-direction: column;
+  }
+
+  .filters-sidebar {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .stats-container {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .stat-item {
+    min-width: calc(50% - 20px);
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .content-container {
+    padding: 10px;
+  }
+
+  .stat-item {
+    min-width: 100%;
+  }
+
+  button[mat-raised-button] {
+    padding: 0 12px;
+  }
+}
+
+.divider{
+  padding: 20px;
+}
+

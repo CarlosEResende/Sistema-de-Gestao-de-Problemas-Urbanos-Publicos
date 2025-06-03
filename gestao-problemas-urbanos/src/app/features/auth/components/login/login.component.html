@@ -1,0 +1,115 @@
+<div class="login-container">
+  <div class="messages-container">
+    <div
+      *ngIf="exibirMensagemErroFlag"
+
+      [class.sumindo]="sumindoErro"
+      class="error-message mat-elevation-z2"
+    >
+      <mat-icon>error_outline</mat-icon>
+      <span>{{ mensagemErro }}</span>
+    </div>
+  </div>
+  <br>
+  <mat-card class="login-card mat-elevation-z8">
+    <div class="card-header">
+      <button
+        mat-icon-button
+        class="back-button"
+        routerLink="/"
+        aria-label="Voltar"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="header-content">
+        <div class="header-icon-and-title">
+          <mat-icon class="header-icon">location_city</mat-icon>
+          <h1 class="mat-headline-5">Portal Urbano</h1>
+        </div>
+        <p class="mat-body-1">Faça login para continuar</p>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <form (ngSubmit)="efetuarLogin()" #loginForm="ngForm" class="login-form">
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            required
+            email
+            #emailInput="ngModel"
+            autocomplete="email"
+          />
+          <mat-icon matPrefix>mail_outline</mat-icon>
+          <mat-error *ngIf="emailInput.invalid && emailInput.touched">
+            <mat-icon>error</mat-icon>
+            {{ emailInput.errors?.['required'] ? 'Email é obrigatório' : 'Email inválido' }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Senha</mat-label>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            name="senha"
+            [(ngModel)]="senha"
+            required
+            minlength="6"
+            #senhaInput="ngModel"
+            autocomplete="current-password"
+          />
+          <mat-icon matPrefix>lock_outline</mat-icon>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            type="button"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="senhaInput.invalid && senhaInput.touched">
+            <mat-icon>error</mat-icon>
+            {{ senhaInput.errors?.['required'] ? 'Senha é obrigatória' : 'Mínimo 6 caracteres' }}
+          </mat-error>
+        </mat-form-field>
+
+
+        <div class="login-link">
+          <a (click)="navegarParaCadastrarUsuario()">
+            <mat-icon>person_add</mat-icon>
+            Criar nova conta
+          </a>
+        </div>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="loginForm.invalid || loading"
+          class="submit-button"
+        >
+          <span *ngIf="!loading">Entrar</span>
+          <mat-spinner *ngIf="loading" diameter="24"></mat-spinner>
+        </button>
+      </form>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-actions class="card-footer">
+      <small
+        >© {{ currentYear }} Portal Urbano. Todos os direitos reservados.</small
+      >
+    </mat-card-actions>
+  </mat-card>
+
+</div>

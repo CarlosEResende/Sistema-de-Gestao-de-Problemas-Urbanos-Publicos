@@ -1,0 +1,163 @@
+body, html {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 32px;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
+
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.logo img {
+  height: 100px !important;
+  width: auto;
+  margin-right: -20px;
+  max-height: none !important;
+}
+
+
+.nav-links  {
+  margin: 0 8px;
+  text-decoration: none;
+  color: #111;
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  gap: 12px
+
+
+}
+
+
+.nav-buttons button {
+  margin-left: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border: none;
+}
+
+.nav-buttons .custom-login {
+  background-color: #fff;
+  color: #000;
+}
+
+.nav-buttons .custom-signup {
+  background-color: #50c18a;
+  color: white;
+}
+
+.hero-buttons button {
+  padding: 20px 40px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.15);
+
+}
+
+.hero-buttons .custom-signup {
+  background-color: #50c18a;
+  color: white;
+}
+
+
+
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  flex-wrap: wrap;
+  margin-left: 60px;
+  margin-top: -20px;
+}
+
+.hero-text {
+  flex: 1;
+  margin-top: 150px;
+}
+
+.hero-text h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.hero-text p {
+  color: #555;
+  font-size: 1rem;
+  max-width: 480px;
+}
+
+.hero-buttons {
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+
+}
+
+.mat-flat-button.custom-green {
+  background-color: #50c18a;
+  color: white;
+}
+
+.hero-images {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  margin-top: 250px;
+}
+
+.hero-images img {
+
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.main-img {
+  position: absolute;
+  top: 40px;
+  right: 350px;
+  width: 210px;
+}
+
+.img2 {
+  position: absolute;
+  top: -190px;
+  right: 100px;
+  width: 230px;
+}
+
+.img3 {
+  position: absolute;
+  bottom: 0;
+  left: 150px;
+  width: 250px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+

@@ -1,0 +1,132 @@
+<div class="container">
+  <div class="content-container">
+    <div class="filters-sidebar">
+      <mat-toolbar>
+        <span>Painel do Agente</span>
+        <span class="spacer"></span>
+        <button mat-raised-button (click)="logout()">
+          <mat-icon>logout</mat-icon> Sair
+        </button>
+      </mat-toolbar>
+      <mat-divider class="divider"></mat-divider>
+      <mat-card class="filter-card">
+        <mat-card-header>
+          <mat-card-title>Filtrar Problemas</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="filter-content">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Endereço (rua, bairro, CEP)</mat-label>
+            <input
+              matInput
+              placeholder="Digite para buscar..."
+              [(ngModel)]="filtroEndereco"
+              (ngModelChange)="aplicarFiltros()"
+            />
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Status</mat-label>
+            <mat-select
+              [(value)]="filtroStatus"
+              (selectionChange)="aplicarFiltros()"
+            >
+              <mat-option value="">Todos os status</mat-option>
+              <mat-option *ngFor="let status of listaStatus" [value]="status">
+                {{ status }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Tipo de Problema</mat-label>
+            <mat-select
+              [(value)]="filtroTipoProblema"
+              (selectionChange)="aplicarFiltros()"
+            >
+              <mat-option value="">Todos os tipos</mat-option>
+              <mat-option
+                *ngFor="let tipo of listaTiposProblema"
+                [value]="tipo"
+              >
+                {{ tipo }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            class="full-width"
+            (click)="limparFiltros()"
+          >
+            <mat-icon>clear_all</mat-icon> Limpar Filtros
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="problems-section">
+      <mat-card class="stats-bar">
+        <div class="stats-container">
+          <div *ngFor="let status of listaStatus" class="stat-item">
+            <div class="stat-value">{{ getStatusCount(status) }}</div>
+            <div class="stat-label">{{ status }}</div>
+          </div>
+          <div class="stat-item total">
+            <div class="stat-value">{{ problemasFiltrados.length }}</div>
+            <div class="stat-label">Total</div>
+          </div>
+        </div>
+      </mat-card>
+
+      <div class="problems-list">
+        <div *ngIf="carregando" class="loading-container">
+          <mat-spinner diameter="50"></mat-spinner>
+          <p>Carregando problemas...</p>
+        </div>
+
+        <div *ngIf="mensagemErro" class="error-container">
+          <mat-error>{{ mensagemErro }}</mat-error>
+        </div>
+
+        <mat-card
+          *ngFor="let problema of problemasFiltrados"
+          class="problem-card"
+          (click)="navegarParaDetalhesProblema(problema.id)"
+        >
+          <mat-card-header>
+            <mat-card-title>{{ problema.tipoProblema }}</mat-card-title>
+            <mat-card-subtitle>
+              {{ problema.endereco.rua }}, {{ problema.endereco.bairro }} -
+              {{ problema.endereco.cidade }}
+            </mat-card-subtitle>
+            <div
+              class="status-badge"
+              [ngClass]="
+                'status-' + problema.status.toLowerCase().replace(' ', '-')
+              "
+            >
+              {{ problema.status }}
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ problema.descricao }}</p>
+            <small
+              >Registrado em:
+              {{ problema.dataRegistro | date : "dd/MM/yyyy HH:mm" }}</small
+            >
+          </mat-card-content>
+        </mat-card>
+
+        <div
+          *ngIf="!carregando && problemasFiltrados.length === 0"
+          class="no-results"
+        >
+          <mat-icon>info</mat-icon>
+          <p>Nenhum problema encontrado com os filtros atuais.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

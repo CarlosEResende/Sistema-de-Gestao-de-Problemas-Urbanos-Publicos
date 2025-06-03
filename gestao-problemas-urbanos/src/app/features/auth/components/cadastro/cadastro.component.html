@@ -1,0 +1,177 @@
+<div class="registration-container">
+  <mat-card class="registration-card mat-elevation-z8">
+    <div class="card-header">
+      <button
+        mat-icon-button
+        class="back-button"
+        routerLink="/"
+        aria-label="Voltar"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="header-content">
+        <div class="header-icon-and-title">
+          <mat-icon class="header-icon">person_add</mat-icon>
+          <h1 class="mat-headline-5">Criar nova conta</h1>
+        </div>
+        <p class="mat-body-1">Preencha seus dados para se registrar</p>
+      </div>
+    </div>
+
+    <mat-divider aria-hidden="true"></mat-divider>
+
+    <main class="card-content">
+      <form
+        (ngSubmit)="cadastrar()"
+        #registrationForm="ngForm"
+        class="registration-form"
+      >
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Nome completo</mat-label>
+          <input
+            matInput
+            name="name"
+            [(ngModel)]="novoUsuario.nome"
+            required
+            #name="ngModel"
+          />
+          <mat-icon matPrefix aria-hidden="true">person_outline</mat-icon>
+          <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+            <mat-icon aria-hidden="true">error</mat-icon>
+            Nome é obrigatório
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            name="email"
+            [(ngModel)]="novoUsuario.email"
+            required
+            email
+            #email="ngModel"
+          />
+          <mat-icon matPrefix aria-hidden="true">mail_outline</mat-icon>
+          <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+            <mat-icon aria-hidden="true">error</mat-icon>
+            {{ email.errors?.['required'] ? 'Email é obrigatório' : 'Email inválido' }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Senha</mat-label>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            name="password"
+            [(ngModel)]="novoUsuario.senha"
+            required
+            minlength="6"
+            #password="ngModel"
+          />
+          <mat-icon matPrefix aria-hidden="true">lock_outline</mat-icon>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            type="button"
+            aria-label="Mostrar/ocultar senha"
+          >
+            <mat-icon aria-hidden="true">{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="password.invalid && (password.dirty || password.touched)"
+          >
+            <mat-icon aria-hidden="true">error</mat-icon>
+            {{ password.errors?.['required'] ? 'Senha é obrigatória' : 'Mínimo 6 caracteres' }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Confirmar senha</mat-label>
+          <input
+            matInput
+            [type]="hideConfirmPassword ? 'password' : 'text'"
+            name="confirmPassword"
+            [(ngModel)]="confirmarSenha"
+            required
+            #confirmPasswordField="ngModel"
+          />
+          <mat-icon matPrefix aria-hidden="true">lock_reset</mat-icon>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hideConfirmPassword = !hideConfirmPassword"
+            type="button"
+            aria-label="Mostrar/ocultar confirmação de senha"
+          >
+            <mat-icon aria-hidden="true">{{
+              hideConfirmPassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="
+              confirmPasswordField.invalid &&
+              (confirmPasswordField.dirty || confirmPasswordField.touched)
+            "
+          >
+            <mat-icon aria-hidden="true">error</mat-icon>
+            Confirme sua senha
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Botão de Submit -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="registrationForm.invalid || loading"
+          class="submit-button"
+          aria-label="Criar nova conta"
+        >
+          <span *ngIf="!loading">Criar conta</span>
+          <mat-spinner
+            *ngIf="loading"
+            diameter="24"
+            aria-hidden="true"
+          ></mat-spinner>
+        </button>
+      </form>
+    </main>
+
+    <mat-divider aria-hidden="true"></mat-divider>
+
+    <footer class="card-footer">
+      <p>
+        Já tem uma conta?
+        <a
+          mat-button
+          color="primary"
+          routerLink="/auth/login"
+          aria-label="Ir para página de login"
+          >Faça login</a
+        >
+      </p>
+    </footer>
+  </mat-card>
+
+  <aside class="messages-container" aria-live="polite">
+    <div *ngIf="mensagemErro" @fadeInOut class="error-message mat-elevation-z2">
+      <mat-icon aria-hidden="true">error_outline</mat-icon>
+      <span>{{ mensagemErro }}</span>
+    </div>
+
+    <div
+      *ngIf="mensagemSucesso"
+      @fadeInOut
+      class="success-message mat-elevation-z2"
+    >
+      <mat-icon aria-hidden="true">check_circle_outline</mat-icon>
+      <span>{{ mensagemSucesso }}</span>
+    </div>
+  </aside>
+</div>

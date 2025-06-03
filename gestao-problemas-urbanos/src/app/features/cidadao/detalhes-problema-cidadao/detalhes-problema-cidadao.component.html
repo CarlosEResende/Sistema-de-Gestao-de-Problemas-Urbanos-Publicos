@@ -1,0 +1,135 @@
+<div class="problem-detail-container" *ngIf="!carregando; else loading">
+  <div *ngIf="problema; else noProblem">
+    <div class="problem-header">
+      <button
+        mat-icon-button
+        class="back-button"
+        (click)="navegarParaPainel()"
+        aria-label="Voltar para o painel"
+      >
+        <mat-icon>arrow_back_ios</mat-icon>
+      </button>
+      <div class="header-content">
+        <h1 class="problem-title">{{ problema.titulo }}</h1>
+        <div class="problem-meta">
+          <span class="meta-item">
+            <mat-icon>calendar_today</mat-icon>
+            {{ problema.dataRegistro | date : "dd/MM/yyyy" }}
+          </span>
+          <span class="meta-item">
+            <mat-icon>location_on</mat-icon>
+            {{ problema.endereco.bairro }}
+          </span>
+          <span class="meta-item">
+            <mat-icon>location_on</mat-icon>
+            {{ problema.endereco.cidade }}
+          </span>
+          <span class="meta-item">
+            <mat-icon>location_on</mat-icon>
+            {{ problema.endereco.cep }}
+          </span>
+          <span
+            class="status-badge"
+            [ngClass]="{
+              'status-registered': problema.status === 'Registrado',
+              'status-in-progress': problema.status === 'Em Andamento',
+              'status-resolved': problema.status === 'Resolvido'
+            }"
+          >
+            {{ problema.status }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <mat-card class="problem-card elevated-card">
+      <mat-card-content>
+        <p class="problem-description">{{ problema.descricao }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="comments-section">
+      <div class="section-header">
+        <h2 class="section-title">Comentários</h2>
+        <span class="comment-count"
+          >{{ problema.comentarios.length || 0 }} comentários</span
+        >
+      </div>
+
+      <div
+        *ngIf="
+          problema.comentarios && problema.comentarios.length > 0;
+          else noComments
+        "
+      >
+        <div class="comment-list">
+          <div
+            *ngFor="let comentario of problema.comentarios"
+            class="comment-card"
+          >
+            <div class="comment-avatar">
+              <mat-icon>account_circle</mat-icon>
+            </div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <span class="comment-author">{{ comentario.nomeUsuario }}</span>
+                <span class="comment-date">{{
+                  comentario.dataHora | date : "dd/MM/yyyy HH:mm"
+                }}</span>
+              </div>
+              <p class="comment-text">{{ comentario.texto }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noComments>
+        <div class="no-comments">
+          <mat-icon>forum</mat-icon>
+          <p>Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+        </div>
+      </ng-template>
+
+      <div *ngIf="podeComentar()" class="new-comment-form">
+        <h3 class="form-title">Adicionar Comentário</h3>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Escreva seu comentário...</mat-label>
+          <textarea
+            matInput
+            [(ngModel)]="novoComentarioTexto"
+            rows="4"
+          ></textarea>
+        </mat-form-field>
+        <button
+          mat-flat-button
+          color="primary"
+          class="submit-button"
+          (click)="adicionarComentario()"
+          [disabled]="!novoComentarioTexto.trim()"
+        >
+          <mat-icon>send</mat-icon>
+          Enviar Comentário
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noProblem>
+    <div class="error-state" *ngIf="mensagemErro">
+      <mat-icon class="error-icon">error_outline</mat-icon>
+      <h3 class="error-title">Ocorreu um erro</h3>
+      <p class="error-message">{{ mensagemErro }}</p>
+      <button mat-stroked-button (click)="navegarParaPainel()">
+        <mat-icon>arrow_back</mat-icon>
+        Voltar ao Painel
+      </button>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #loading>
+  <div class="loading-state">
+    <mat-spinner diameter="60"></mat-spinner>
+    <h3 class="loading-text">Carregando detalhes do problema...</h3>
+  </div>
+</ng-template>

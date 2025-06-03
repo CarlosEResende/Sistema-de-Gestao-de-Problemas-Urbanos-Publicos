@@ -1,0 +1,136 @@
+<div class="container" *ngIf="usuarioLogado">
+  <mat-toolbar class="compact-sidebar">
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <mat-icon class="sidebar-icon">account_circle</mat-icon>
+        <h2 class="sidebar-title">Painel do Cidadão</h2>
+      </div>
+
+      <button
+        mat-raised-button
+        class="report-button"
+        (click)="navegarParaNovoProblema()"
+      >
+
+        <mat-icon>add</mat-icon>
+        <span>Reportar Problema</span>
+      </button>
+      <button
+        mat-raised-button
+        class="report-button"
+        (click)="logout()"
+      >
+
+        <mat-icon></mat-icon>
+        <span>Sair da Conta</span>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div class="main-content">
+    <mat-card class="welcome-card">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-icon">account_circle</mat-icon>
+        </div>
+        <mat-card-title>Bem-vindo, {{ usuarioLogado.nome }}</mat-card-title>
+        <mat-card-subtitle
+          >Seu painel de problemas urbanos reportados</mat-card-subtitle
+        >
+      </mat-card-header>
+    </mat-card>
+
+    <div *ngIf="carregando" class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Carregando seus problemas...</p>
+    </div>
+
+    <div *ngIf="mensagemErro" class="error-container">
+      <mat-card class="error-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar color="warn">error</mat-icon>
+          <mat-card-title>Erro ao carregar</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          {{ mensagemErro }}
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="carregarMeusProblemas()">
+            Tentar novamente
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div
+      *ngIf="!carregando && meusProblemas.length === 0 && !mensagemErro"
+      class="no-problems"
+    >
+      <mat-card>
+        <mat-card-header>
+          <mat-icon mat-card-avatar>info</mat-icon>
+          <mat-card-title>Nenhum problema encontrado</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Você ainda não reportou nenhum problema urbano.</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="navegarParaNovoProblema()"
+          >
+            Reportar meu primeiro problema
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div *ngIf="meusProblemas.length > 0" class="problems-list">
+      <mat-card *ngFor="let problema of meusProblemas" class="problem-card">
+        <mat-card-header>
+          <mat-card-title>{{ problema.titulo }}</mat-card-title>
+          <mat-card-subtitle>
+            <span
+              class="status-badge"
+              [ngClass]="{
+                'status-registrado': problema.status === 'Registrado',
+                'status-em-analise': problema.status === 'Em Análise',
+                'status-em-andamento': problema.status === 'Em Andamento',
+                'status-resolvido': problema.status === 'Resolvido',
+                'status-cancelado': problema.status === 'Cancelado',
+              }"
+            >
+              {{ problema.status }}
+            </span>
+            • {{ problema.dataRegistro | date : "dd/MM/yyyy" }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ problema.descricao }}</p>
+          <div *ngIf="problema.endereco.bairro" class="location">
+            <mat-icon>location_on</mat-icon>
+            {{ problema.endereco.bairro }}
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            mat-button
+            color="primary"
+            (click)="navegarParaDetalhesProblema(problema.id)"
+          >
+            <mat-icon>visibility</mat-icon> Detalhes
+          </button>
+          <button
+            *ngIf="podeEditar(problema)"
+            mat-button
+            color="accent"
+            (click)="navegarParaEditarProblema(problema.id)"
+          >
+            <mat-icon>edit</mat-icon> Editar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
