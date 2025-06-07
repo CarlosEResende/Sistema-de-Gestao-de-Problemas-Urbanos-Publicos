@@ -60,9 +60,18 @@ O sistema contempla dois tipos principais de usuários:
 
 O diagrama de classes a seguir modela a estrutura central do SGPUP. Ele mostra como as entidades — `Usuario`, `ProblemaUrbano` e `Comentario` — se conectam para viabilizar o fluxo de comunicação entre cidadãos e a gestão pública.
 
-A principal decisão de design foi usar **Herança** para criar os perfis `Cidadao` e `AgentePublico` a partir de uma classe `Usuario` base, garantindo que cada um tenha suas permissões específicas. Além disso, a **Composição** liga fortemente um `Comentario` a um `ProblemaUrbano`, refletindo a lógica de que um comentário não existe sem um problema associado.
+A principal decisão de design foi usar **Herança** para criar os perfis `Cidadao` e `AgentePublico` a partir de uma classe `Usuario` base, garantindo que cada um tenha suas permissões específicas. Além disso, a **Composição** liga  um `Comentario` a um `ProblemaUrbano`, refletindo a lógica de que um comentário não existe sem um problema associado.
 
 <img src="https://github.com/user-attachments/assets/ba6cd1fa-92bb-4735-946b-1a7522ed6cc7" alt="Classes" width="700"/>
+
+## Cardinalidade dos Relacionamentos
+
+- Um **Cidadao** pode ou não registrar vários **Problemas Urbanos** (0:N).
+- Cada **Problema Urbano** é registrado por exatamente um **Cidadao** (1:1).
+- Um **Problema Urbano** pode ou não estar atribuído a um **Agente Publico** (0..1).
+- Cada **Problema Urbano** pode conter vários **Comentarios** (1:N).
+- Cada **Comentario** pertence a exatamente um **Problema Urbano** (N:1).
+- Tanto **Cidadao** quanto **Agente Publico** são especializações de **Usuario** (Herança 1:1).
 
 
 ## Tecnologias (Contexto do Desenvolvimento)
