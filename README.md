@@ -68,7 +68,7 @@ A principal decisão de design foi usar **Herança** para criar os perfis `Cidad
 
 - Um **Cidadao** pode ou não registrar vários **Problemas Urbanos** (0:N).
 - Cada **Problema Urbano** é registrado por exatamente um **Cidadao** (1:1).
-- Um **Problema Urbano** pode ou não estar atribuído a um **Agente Publico** (0..1).
+- Um **AgentePublico** pode gerenciar zero ou muitos **ProblemaUrbano** (0..*).
 - Cada **Problema Urbano** pode conter vários **Comentarios** (1:N).
 - Cada **Comentario** pertence a exatamente um **Problema Urbano** (N:1).
 - Tanto **Cidadao** quanto **Agente Publico** são especializações de **Usuario** (Herança 1:1).
