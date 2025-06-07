@@ -56,6 +56,13 @@ O sistema contempla dois tipos principais de usuários:
 6.  **Acompanhamento:** Durante todo o processo, o cidadão que registrou o problema pode visualizar o status atual e o histórico de comentários.
 
 
+## Estrutura do Sistema (Diagrama de Classes)
+
+O diagrama de classes a seguir modela a estrutura central do SGPUP. Ele mostra como as entidades — `Usuario`, `ProblemaUrbano` e `Comentario` — se conectam para viabilizar o fluxo de comunicação entre cidadãos e a gestão pública.
+
+A principal decisão de design foi usar **Herança** para criar os perfis `Cidadao` e `AgentePublico` a partir de uma classe `Usuario` base, garantindo que cada um tenha suas permissões específicas. Além disso, a **Composição** liga fortemente um `Comentario` a um `ProblemaUrbano`, refletindo a lógica de que um comentário não existe sem um problema associado.
+
+![Classes](https://github.com/user-attachments/assets/ba6cd1fa-92bb-4735-946b-1a7522ed6cc7)
 
 ## Tecnologias (Contexto do Desenvolvimento)
 
